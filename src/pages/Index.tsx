@@ -3,6 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import Icon from "@/components/ui/icon";
 import { useState, useEffect, useRef } from "react";
 
@@ -312,6 +313,75 @@ export default function Index() {
                 </CardContent>
               </Card>
             ))}
+          </div>
+        </section>
+
+        <section id="faq" className="container mx-auto px-4 py-20">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 gradient-text">
+            Частые вопросы
+          </h2>
+          <div className="max-w-3xl mx-auto">
+            <Accordion type="single" collapsible className="space-y-4">
+              <AccordionItem value="item-1" className="bg-card/30 backdrop-blur border border-border/30 rounded-xl px-6 data-[state=open]:border-primary/50 transition-all">
+                <AccordionTrigger className="text-lg font-medium hover:text-primary transition-colors">
+                  <div className="flex items-center gap-3">
+                    <Icon name="HelpCircle" className="text-primary" size={24} />
+                    Как работают волшебные настрои?
+                  </div>
+                </AccordionTrigger>
+                <AccordionContent className="text-foreground/70 pt-2">
+                  Волшебные настрои — это персонализированные аффирмации, заряженные энергией кристаллов и созданные специально для вашей цели. Мы используем силу слова, визуализации и энергетических практик для создания мощных установок. Каждое видео создаётся индивидуально с вашим именем и запросом.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="item-2" className="bg-card/30 backdrop-blur border border-border/30 rounded-xl px-6 data-[state=open]:border-primary/50 transition-all">
+                <AccordionTrigger className="text-lg font-medium hover:text-primary transition-colors">
+                  <div className="flex items-center gap-3">
+                    <Icon name="Clock" className="text-primary" size={24} />
+                    Как быстро я получу свой настрой?
+                  </div>
+                </AccordionTrigger>
+                <AccordionContent className="text-foreground/70 pt-2">
+                  Экспресс-Заряд Удачи доставляется в течение 24 часов. Именные Волшебные Настрои и Кристальные Настрои создаются 2-3 дня, так как требуют более глубокой проработки. Программа "7 Дней к Мечте" стартует в удобное для вас время.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="item-3" className="bg-card/30 backdrop-blur border border-border/30 rounded-xl px-6 data-[state=open]:border-primary/50 transition-all">
+                <AccordionTrigger className="text-lg font-medium hover:text-primary transition-colors">
+                  <div className="flex items-center gap-3">
+                    <Icon name="Gem" className="text-primary" size={24} />
+                    Что такое Кристальные Настрои?
+                  </div>
+                </AccordionTrigger>
+                <AccordionContent className="text-foreground/70 pt-2">
+                  Это премиальный продукт, который сочетает силу аффирмации и энергию выбранного кристалла. Мы подбираем кристалл в соответствии с вашей целью: аметист для духовного роста, цитрин для процветания, розовый кварц для любви. Вы получаете видео + PDF с описанием свойств кристалла.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="item-4" className="bg-card/30 backdrop-blur border border-border/30 rounded-xl px-6 data-[state=open]:border-primary/50 transition-all">
+                <AccordionTrigger className="text-lg font-medium hover:text-primary transition-colors">
+                  <div className="flex items-center gap-3">
+                    <Icon name="CreditCard" className="text-primary" size={24} />
+                    Какие способы оплаты?
+                  </div>
+                </AccordionTrigger>
+                <AccordionContent className="text-foreground/70 pt-2">
+                  Мы принимаем банковские карты, электронные кошельки и переводы по СБП. После оформления заказа вы получите инструкции по оплате. Все платежи проходят через защищённые каналы.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="item-5" className="bg-card/30 backdrop-blur border border-border/30 rounded-xl px-6 data-[state=open]:border-primary/50 transition-all">
+                <AccordionTrigger className="text-lg font-medium hover:text-primary transition-colors">
+                  <div className="flex items-center gap-3">
+                    <Icon name="Shield" className="text-primary" size={24} />
+                    Есть ли гарантия результата?
+                  </div>
+                </AccordionTrigger>
+                <AccordionContent className="text-foreground/70 pt-2">
+                  Мы гарантируем качество нашей работы и индивидуальный подход к каждому клиенту. 98% наших клиентов отмечают позитивные изменения. Важно понимать, что результат зависит от вашей вовлечённости и регулярности практики.
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
           </div>
         </section>
 
