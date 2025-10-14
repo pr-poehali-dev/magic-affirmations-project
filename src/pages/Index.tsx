@@ -96,11 +96,36 @@ export default function Index() {
     setOrderForm({ name: "", email: "", phone: "", details: "" });
   };
 
+  const floatingSymbols = [
+    { icon: "Key", delay: "0s", left: "10%", duration: "8s" },
+    { icon: "DollarSign", delay: "2s", left: "85%", duration: "10s" },
+    { icon: "Gem", delay: "1s", left: "20%", duration: "12s" },
+    { icon: "TrendingUp", delay: "3s", left: "75%", duration: "9s" },
+    { icon: "Sparkles", delay: "1.5s", left: "50%", duration: "11s" },
+    { icon: "CircleDollarSign", delay: "4s", left: "30%", duration: "13s" },
+    { icon: "Crown", delay: "2.5s", left: "65%", duration: "10s" },
+  ];
+
   return (
     <div className="min-h-screen bg-background relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-primary/20 via-background to-background"></div>
       <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0ic3RhcnMiIHg9IjAiIHk9IjAiIHdpZHRoPSIyMDAiIGhlaWdodD0iMjAwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48Y2lyY2xlIGN4PSIxIiBjeT0iMSIgcj0iMSIgZmlsbD0id2hpdGUiIG9wYWNpdHk9IjAuMSIvPjxjaXJjbGUgY3g9IjgwIiBjeT0iODAiIHI9IjEuNSIgZmlsbD0id2hpdGUiIG9wYWNpdHk9IjAuMTUiLz48Y2lyY2xlIGN4PSIxNTAiIGN5PSI1MCIgcj0iMSIgZmlsbD0id2hpdGUiIG9wYWNpdHk9IjAuMSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNzdGFycykiLz48L3N2Zz4=')] opacity-40"></div>
       
+      {floatingSymbols.map((symbol, index) => (
+        <div
+          key={index}
+          className="absolute text-primary/20 pointer-events-none"
+          style={{
+            left: symbol.left,
+            top: '100%',
+            animation: `float-up ${symbol.duration} ease-in-out infinite`,
+            animationDelay: symbol.delay,
+          }}
+        >
+          <Icon name={symbol.icon as any} size={40} />
+        </div>
+      ))}
+
       <div className="relative z-10">
         <nav className="container mx-auto px-4 py-6 flex items-center justify-between">
           <div className="flex items-center gap-2">
