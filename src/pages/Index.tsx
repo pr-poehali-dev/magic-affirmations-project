@@ -128,6 +128,7 @@ export default function Index() {
   });
 
   const [orderDialog, setOrderDialog] = useState(false);
+  const [thankYouDialog, setThankYouDialog] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<typeof products[0] | null>(null);
   const [orderForm, setOrderForm] = useState({
     name: "",
@@ -150,6 +151,7 @@ export default function Index() {
     e.preventDefault();
     console.log("Order submitted:", { product: selectedProduct?.title, ...orderForm });
     setOrderDialog(false);
+    setThankYouDialog(true);
     setOrderForm({ name: "", email: "", phone: "", details: "" });
   };
 
@@ -523,6 +525,58 @@ export default function Index() {
               </Button>
             </div>
           </form>
+        </DialogContent>
+      </Dialog>
+
+      <Dialog open={thankYouDialog} onOpenChange={setThankYouDialog}>
+        <DialogContent className="bg-card border-border/50 max-w-md text-center">
+          <div className="flex flex-col items-center gap-6 py-4">
+            <div className="relative">
+              <div className="absolute inset-0 bg-primary/30 rounded-full blur-2xl animate-pulse-glow"></div>
+              <div className="relative bg-primary/20 p-6 rounded-full">
+                <Icon name="Sparkles" className="text-primary" size={64} />
+              </div>
+            </div>
+            
+            <div className="space-y-3">
+              <h2 className="text-3xl font-bold gradient-text">
+                Благодарим вас!
+              </h2>
+              <p className="text-foreground/80 text-lg">
+                Ваш заказ успешно принят ✨
+              </p>
+            </div>
+
+            <div className="bg-card/50 p-4 rounded-xl border border-border/30 w-full">
+              <p className="text-foreground/70 text-sm mb-3">
+                Мы свяжемся с вами в ближайшее время для подтверждения деталей заказа
+              </p>
+              <div className="flex items-center justify-center gap-2 text-primary">
+                <Icon name="Mail" size={20} />
+                <span className="text-sm">Проверьте вашу почту</span>
+              </div>
+            </div>
+
+            <div className="flex gap-3 w-full">
+              <Button 
+                variant="outline" 
+                className="flex-1"
+                onClick={() => setThankYouDialog(false)}
+              >
+                Закрыть
+              </Button>
+              <Button 
+                className="flex-1 hover:scale-105 transition-transform"
+                onClick={() => {
+                  setThankYouDialog(false);
+                  window.open('https://wa.me/79999999999?text=Здравствуйте!%20Только%20что%20оформил%20заказ', '_blank');
+                }}
+              >
+                <Icon name="MessageCircle" className="mr-2" size={18} />
+                Написать в WhatsApp
+              </Button>
+            </div>
+          </div>
         </DialogContent>
       </Dialog>
     </div>
