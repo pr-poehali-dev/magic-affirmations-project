@@ -4,7 +4,63 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import Icon from "@/components/ui/icon";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
+
+function StatsCounter({ icon, end, label, suffix = "" }: { icon: string; end: number; label: string; suffix?: string }) {
+  const [count, setCount] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
+  const counterRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    if (counterRef.current) {
+      observer.observe(counterRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!isVisible) return;
+
+    const duration = 2000;
+    const steps = 60;
+    const increment = end / steps;
+    let current = 0;
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= end) {
+        setCount(end);
+        clearInterval(timer);
+      } else {
+        setCount(Math.floor(current));
+      }
+    }, duration / steps);
+
+    return () => clearInterval(timer);
+  }, [isVisible, end]);
+
+  return (
+    <div 
+      ref={counterRef}
+      className="text-center p-6 bg-card/30 backdrop-blur border border-border/30 rounded-2xl hover:border-primary/50 transition-all duration-300 hover:scale-105"
+    >
+      <Icon name={icon as any} className="text-primary mx-auto mb-4" size={48} />
+      <div className="text-5xl font-bold gradient-text mb-2">
+        {count.toLocaleString()}{suffix}
+      </div>
+      <div className="text-foreground/70 text-sm">{label}</div>
+    </div>
+  );
+}
 
 const products = [
   {
@@ -154,6 +210,29 @@ export default function Index() {
               <Icon name="Sparkles" className="mr-2" size={20} />
               Начать путь к мечте
             </Button>
+          </div>
+        </section>
+
+        <section className="container mx-auto px-4 py-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            <StatsCounter 
+              icon="Users" 
+              end={2847} 
+              label="Довольных клиентов" 
+              suffix="+"
+            />
+            <StatsCounter 
+              icon="Video" 
+              end={15420} 
+              label="Созданных настроев" 
+              suffix="+"
+            />
+            <StatsCounter 
+              icon="Star" 
+              end={98} 
+              label="Довольных отзывов" 
+              suffix="%"
+            />
           </div>
         </section>
 
