@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import Icon from "@/components/ui/icon";
 import { useState } from "react";
 
@@ -10,8 +11,8 @@ const products = [
     id: 1,
     title: "Именные Волшебные Настрои",
     description: "Персональная аффирмация, заряженная энергией специально для вашей цели. Короткое видео 15-30 секунд с вашим именем.",
-    icon: "Sparkles",
-    image: "https://cdn.poehali.dev/projects/2c167ea8-3a44-4305-882e-e63b08628fba/files/a89c9623-450e-4072-bc94-3833052e0c27.jpg",
+    icon: "Key",
+    image: "https://cdn.poehali.dev/projects/2c167ea8-3a44-4305-882e-e63b08628fba/files/6aabadcf-77c1-4860-94f9-7da4744b0664.jpg",
     price: "от 1500₽",
     features: ["Персональное видео", "Заряжено энергией", "15-30 секунд"],
   },
@@ -19,8 +20,8 @@ const products = [
     id: 2,
     title: "7 Дней к Мечте",
     description: "Структурированная программа с ежедневными аффирмациями. Получайте мотивацию каждый день на протяжении недели.",
-    icon: "Calendar",
-    image: "https://cdn.poehali.dev/projects/2c167ea8-3a44-4305-882e-e63b08628fba/files/4632dd7c-99e8-4840-928d-ed098bd76d6a.jpg",
+    icon: "TrendingUp",
+    image: "https://cdn.poehali.dev/projects/2c167ea8-3a44-4305-882e-e63b08628fba/files/2e699e1d-304a-43de-890c-4e65cbaa2230.jpg",
     price: "от 5000₽",
     features: ["7 видео", "Ежедневная поддержка", "Telegram доставка"],
   },
@@ -28,8 +29,8 @@ const products = [
     id: 3,
     title: "Экспресс-Заряд Удачи",
     description: "Быстрая поддержка перед важным событием. Избавление от тревоги и страха, заряд позитивной энергии за 24 часа.",
-    icon: "Zap",
-    image: "https://cdn.poehali.dev/projects/2c167ea8-3a44-4305-882e-e63b08628fba/files/5a0698ba-d593-4204-89c4-8af2632e1ae7.jpg",
+    icon: "DollarSign",
+    image: "https://cdn.poehali.dev/projects/2c167ea8-3a44-4305-882e-e63b08628fba/files/e01f04c1-f22b-4fc4-8ae5-a909d5d86030.jpg",
     price: "от 800₽",
     features: ["Доставка за 24ч", "Короткое видео 5-7 сек", "Экспресс-формат"],
   },
@@ -69,9 +70,30 @@ export default function Index() {
     message: "",
   });
 
+  const [orderDialog, setOrderDialog] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<typeof products[0] | null>(null);
+  const [orderForm, setOrderForm] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    details: "",
+  });
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Form submitted:", formData);
+  };
+
+  const handleOrderClick = (product: typeof products[0]) => {
+    setSelectedProduct(product);
+    setOrderDialog(true);
+  };
+
+  const handleOrderSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log("Order submitted:", { product: selectedProduct?.title, ...orderForm });
+    setOrderDialog(false);
+    setOrderForm({ name: "", email: "", phone: "", details: "" });
   };
 
   return (
@@ -150,7 +172,10 @@ export default function Index() {
                       </li>
                     ))}
                   </ul>
-                  <Button className="w-full hover:scale-105 transition-transform">
+                  <Button 
+                    className="w-full hover:scale-105 transition-transform"
+                    onClick={() => handleOrderClick(product)}
+                  >
                     Заказать
                   </Button>
                 </CardContent>
@@ -245,6 +270,70 @@ export default function Index() {
           </p>
         </footer>
       </div>
+
+      <Dialog open={orderDialog} onOpenChange={setOrderDialog}>
+        <DialogContent className="bg-card border-border/50 max-w-md">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2 text-2xl">
+              <Icon name={selectedProduct?.icon as any} className="text-primary" size={24} />
+              {selectedProduct?.title}
+            </DialogTitle>
+            <DialogDescription className="text-base">
+              {selectedProduct?.description}
+            </DialogDescription>
+          </DialogHeader>
+          <form onSubmit={handleOrderSubmit} className="space-y-4 mt-4">
+            <div>
+              <label className="block text-sm font-medium mb-2">Ваше имя</label>
+              <Input
+                placeholder="Иван Иванов"
+                value={orderForm.name}
+                onChange={(e) => setOrderForm({ ...orderForm, name: e.target.value })}
+                required
+                className="bg-background/50"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-2">Email</label>
+              <Input
+                type="email"
+                placeholder="ivan@example.com"
+                value={orderForm.email}
+                onChange={(e) => setOrderForm({ ...orderForm, email: e.target.value })}
+                required
+                className="bg-background/50"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-2">Телефон</label>
+              <Input
+                type="tel"
+                placeholder="+7 (999) 123-45-67"
+                value={orderForm.phone}
+                onChange={(e) => setOrderForm({ ...orderForm, phone: e.target.value })}
+                required
+                className="bg-background/50"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-2">Детали заказа</label>
+              <Textarea
+                placeholder="Расскажите о вашей цели или мечте..."
+                value={orderForm.details}
+                onChange={(e) => setOrderForm({ ...orderForm, details: e.target.value })}
+                className="bg-background/50 min-h-24"
+              />
+            </div>
+            <div className="flex items-center justify-between pt-2">
+              <span className="text-2xl font-bold text-primary">{selectedProduct?.price}</span>
+              <Button type="submit" className="hover:scale-105 transition-transform">
+                <Icon name="ShoppingCart" className="mr-2" size={18} />
+                Оформить заказ
+              </Button>
+            </div>
+          </form>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
