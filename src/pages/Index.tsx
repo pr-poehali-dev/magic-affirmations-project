@@ -239,6 +239,85 @@ export default function Index() {
           </div>
         </section>
 
+        <section id="gallery" className="container mx-auto px-4 py-20 bg-card/10">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-8 gradient-text">
+            Примеры наших работ
+          </h2>
+          <p className="text-center text-foreground/70 mb-16 text-lg max-w-2xl mx-auto">
+            Посмотрите, как выглядят наши магические настрои. Каждое видео создаётся индивидуально с любовью и вниманием к деталям.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <div className="group relative overflow-hidden rounded-2xl border border-border/30 hover:border-primary/50 transition-all duration-300 hover:scale-[1.02] cursor-pointer">
+              <div className="relative aspect-video">
+                <img 
+                  src="https://cdn.poehali.dev/projects/2c167ea8-3a44-4305-882e-e63b08628fba/files/21daa39e-3a23-409a-a4e0-34abb696e88d.jpg"
+                  alt="Пример настроя"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent opacity-80"></div>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="bg-primary/90 backdrop-blur p-4 rounded-full group-hover:scale-110 transition-transform">
+                    <Icon name="Play" className="text-white" size={32} />
+                  </div>
+                </div>
+              </div>
+              <div className="p-4 bg-card/50 backdrop-blur">
+                <h3 className="font-semibold text-lg mb-1 flex items-center gap-2">
+                  <Icon name="Key" className="text-primary" size={20} />
+                  Настрой на успех
+                </h3>
+                <p className="text-sm text-foreground/60">Именной настрой • 25 сек</p>
+              </div>
+            </div>
+
+            <div className="group relative overflow-hidden rounded-2xl border border-border/30 hover:border-primary/50 transition-all duration-300 hover:scale-[1.02] cursor-pointer">
+              <div className="relative aspect-video">
+                <img 
+                  src="https://cdn.poehali.dev/projects/2c167ea8-3a44-4305-882e-e63b08628fba/files/1df943aa-4956-48ee-8e4c-ab2edcf7d894.jpg"
+                  alt="Пример настроя"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent opacity-80"></div>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="bg-primary/90 backdrop-blur p-4 rounded-full group-hover:scale-110 transition-transform">
+                    <Icon name="Play" className="text-white" size={32} />
+                  </div>
+                </div>
+              </div>
+              <div className="p-4 bg-card/50 backdrop-blur">
+                <h3 className="font-semibold text-lg mb-1 flex items-center gap-2">
+                  <Icon name="Gem" className="text-primary" size={20} />
+                  Кристальный настрой
+                </h3>
+                <p className="text-sm text-foreground/60">С аметистом • 30 сек</p>
+              </div>
+            </div>
+
+            <div className="group relative overflow-hidden rounded-2xl border border-border/30 hover:border-primary/50 transition-all duration-300 hover:scale-[1.02] cursor-pointer">
+              <div className="relative aspect-video">
+                <img 
+                  src="https://cdn.poehali.dev/projects/2c167ea8-3a44-4305-882e-e63b08628fba/files/cd67090c-7fa2-4e77-bc19-624c8a31fa86.jpg"
+                  alt="Пример настроя"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent opacity-80"></div>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="bg-primary/90 backdrop-blur p-4 rounded-full group-hover:scale-110 transition-transform">
+                    <Icon name="Play" className="text-white" size={32} />
+                  </div>
+                </div>
+              </div>
+              <div className="p-4 bg-card/50 backdrop-blur">
+                <h3 className="font-semibold text-lg mb-1 flex items-center gap-2">
+                  <Icon name="DollarSign" className="text-primary" size={20} />
+                  Настрой на изобилие
+                </h3>
+                <p className="text-sm text-foreground/60">Экспресс-заряд • 7 сек</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section id="products" className="container mx-auto px-4 py-20">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 gradient-text">
             Наши Продукты
