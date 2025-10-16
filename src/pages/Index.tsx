@@ -10,10 +10,10 @@ const products = [
   {
     id: 1,
     title: "Именные Волшебные Настрои",
-    description: "Персональная аффирмация с вашим именем. Короткое видео 15-30 секунд, заряженное энергией для вашей цели.",
+    description: "Персональная аффирмация с вашим именем. Короткое видео (до 60 секунд), заряженное энергией для вашей цели. Срок исполнения: до 3 рабочих дней.",
     icon: "Key",
     image: "https://cdn.poehali.dev/projects/2c167ea8-3a44-4305-882e-e63b08628fba/files/6aabadcf-77c1-4860-94f9-7da4744b0664.jpg",
-    price: "1500₽",
+    price: "2000₽",
   },
   {
     id: 2,
@@ -66,7 +66,6 @@ export default function Index() {
         <nav className="container mx-auto px-4 py-6 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Icon name="Sparkles" className="text-primary" size={32} />
-            <span className="text-2xl font-bold gradient-text">Мистические Настрои</span>
           </div>
         </nav>
 
